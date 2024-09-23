@@ -21,7 +21,8 @@ module.exports = (sequelize,DataTypes) => {
               key: 'id'
             },
             onUpdate: 'CASCADE'
-        }
+        },
+        
 
     }, {
      tableName: 'profilePets', 

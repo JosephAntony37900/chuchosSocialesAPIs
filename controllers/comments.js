@@ -1,66 +1,66 @@
 const { Comment } = require('../models');
 
-// Crear un avión
-const createPlane = async (req, res) => {
+// Crear un comentario
+const createComment = async (req, res) => {
   try {
-    const plane = await Plane.create(req.body);
-    res.status(201).json(plane);
+    const comment = await Comment.create(req.body);
+    res.status(201).json(comment);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Obtener todos los aviones
-const getAllPlanes = async (req, res) => {
+// Obtener todos los comentarios
+const getAllComments = async (req, res) => {
   try {
-    const planes = await Plane.findAll();
-    res.status(200).json(planes);
+    const comments = await Comment.findAll();
+    res.status(200).json(comments);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Obtener un avión por ID
-const getPlaneById = async (req, res) => {
+// Obtener un comentario por ID
+const getCommentById = async (req, res) => {
   try {
-    const plane = await Plane.findByPk(req.params.id);
-    if (plane) {
-      res.status(200).json(plane);
+    const Comment = await Comment.findByPk(req.params.id);
+    if (Comment) {
+      res.status(200).json(Comment);
     } else {
-      res.status(404).json({ error: 'Plane not found' });
+      res.status(404).json({ error: 'Comment not found' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Actualizar un avión
-const updatePlane = async (req, res) => {
+// Actualizar un comentario
+const updateComment = async (req, res) => {
   try {
-    const [updated] = await Plane.update(req.body, {
+    const [updated] = await Comment.update(req.body, {
       where: { id: req.params.id }
     });
     if (updated) {
-      const updatedPlane = await Plane.findByPk(req.params.id);
-      res.status(200).json(updatedPlane);
+      const updatedComment = await Comment.findByPk(req.params.id);
+      res.status(200).json(updatedComment);
     } else {
-      res.status(404).json({ error: 'Plane not found' });
+      res.status(404).json({ error: 'Comment not found' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Eliminar un avión
-const deletePlane = async (req, res) => {
+// Eliminar un comentario
+const deleteComment = async (req, res) => {
   try {
-    const deleted = await Plane.destroy({
+    const deleted = await Comment.destroy({
       where: { id: req.params.id }
     });
     if (deleted) {
       res.status(204).json();
     } else {
-      res.status(404).json({ error: 'Plane not found' });
+      res.status(404).json({ error: 'Comment not found' });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -68,9 +68,9 @@ const deletePlane = async (req, res) => {
 };
 
 module.exports = {
-  createPlane,
-  getAllPlanes,
-  getPlaneById,
-  updatePlane,
-  deletePlane
+  createComment,
+  getAllComments,
+  getCommentById,
+  updateComment,
+  deleteComment
 };
